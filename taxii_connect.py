@@ -30,29 +30,58 @@ attack_enterprise_collection_url = attack_stix_root_url + api_root.collections[0
 # Print ATT&CK Enterprise Collection URL
 print("ATT&CK Enterprise collection URL: " + attack_enterprise_collection_url)
 
+print("------------------------------------------------------------------------")
+
 #Establish TAXII2 Collection instance for Enterprise ATT&CK collection
 Enterprise_collection = Collection(attack_enterprise_collection_url)
 
 #Supply the collection to TAXIICollection
 tc_source = TAXIICollectionSource(Enterprise_collection)
 
-print(type(tc_source))
+print("TAXII Collection Source :" + str(type(tc_source)))
+
+print("------------------------------------------------------------------------")
 
 # Create filters to retrieve content from Enterprise ATT&CK based on type
-filter_objs = {"techniques": Filter("type", "=", "attack-pattern"),
-               "mitigations": Filter("type", "=", "course-of-action"),
-               "groups": Filter("type", "=", "intrusion-set"),
-               "malware": Filter("type", "=", "malware"),
-               "tools": Filter("type", "=", "tool"),
-               "relationships": Filter("type", "=", "relationship")
-               }
+# filter_objs = {"techniques": Filter("type", "=", "attack-pattern"), # Technique
+#                "mitigations": Filter("type", "=", "course-of-action"), # Mitigation
+#                "groups": Filter("type", "=", "intrusion-set"), # Group
+#                "malware": Filter("type", "=", "malware"), # Software
+#                "tools": Filter("type", "=", "tool"), # Software
+#                "relationships": Filter("type", "=", "relationship")
+#                }
+#
+# # Retrieve all Enterprise ATT&CK content
+# for key in filter_objs:
+#     attack_dict[key] = tc_source.query(filter_objs[key])
+#
+# # For visual purposes, print the first technique received from the server
+# print(attack_dict["techniques"][0])
 
-# Retrieve all Enterprise ATT&CK content
-for key in filter_objs:
-    attack_dict[key] = tc_source.query(filter_objs[key])
+print("------------------------------------------------------------------------")
 
-# For visual purposes, print the first technique received from the server
-print(attack_dict["techniques"][0])
+# # Create filters to retrieve content from Enterprise ATT&CK based on type
+# filter_objs = {
+#     "techniques": Filter("type", "=", "attack-pattern")
+# }
+
+# filter_objs = {
+#     "techniques": Filter("type", "=", "kill-chain-phase")
+# }
+
+# # Retrieve all Enterprise ATT&CK content
+# for key in filter_objs:
+#     attack_dict[key] = tc_source.query(filter_objs[key])
+#
+# # For visual purposes, print the first technique received from the server
+# print(attack_dict["techniques"][1])
+
+technique_filter = Filter("type", "=", "attack-pattern")
+response = tc_source.query(technique_filter)
+print(str(type(response)))
+print(response[0])
+
+
 
 
 
