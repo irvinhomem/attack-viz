@@ -76,6 +76,8 @@ print("------------------------------------------------------------------------"
 # # For visual purposes, print the first technique received from the server
 # print(attack_dict["techniques"][1])
 
+
+# ===============================================================================
 technique_filter = Filter("type", "=", "attack-pattern")
 response = tc_source.query(technique_filter)
 print('Type: ' + str(type(response)))
