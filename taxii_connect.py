@@ -78,8 +78,14 @@ print("------------------------------------------------------------------------"
 
 technique_filter = Filter("type", "=", "attack-pattern")
 response = tc_source.query(technique_filter)
-print(str(type(response)))
+print('Type: ' + str(type(response)))
+print('--')
 print(response[0])
+print(response[0]['kill_chain_phases'])
+print('Type: ' + str(type(response[0]['kill_chain_phases'])))
+print('Len: ' + str(len(response[0]['kill_chain_phases'])))
+print('List:' + str(response[0]['kill_chain_phases'][0]))
+print(response[0]['kill_chain_phases'][0]['phase_name'])
 
 
 
