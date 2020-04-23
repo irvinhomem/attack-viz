@@ -89,7 +89,4 @@ print('Len: ' + str(len(response[0]['kill_chain_phases'])))
 print('List:' + str(response[0]['kill_chain_phases'][0]))
 print(response[0]['kill_chain_phases'][0]['phase_name'])
 
-
-
-
-
+# Test
